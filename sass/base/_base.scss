@@ -1,0 +1,52 @@
+
+*,
+*::after,
+*::before {
+	margin:0; 
+	padding:0;
+	box-sizing: inherit;
+}
+
+html{
+	//This defines what 1rem is
+	font-size:62.5%;  //1 rem = 10px; 10px/16px = 62.5%
+
+	/*
+	단일 media query를 mixin으로 불러오는것
+	@include respond-phone{
+		font-size:50%;
+	}
+	*/
+
+	/* if함수이용해서 여러 breakpoint한꺼번에 불러오는것 */
+
+	// 어차피 tab-port의 의미가 900px이하니까 겹쳐서 생략
+	// @include respond(phone){
+	// 	font-size:50%;
+	// }
+
+	// mix-width은 큰 스크린이 상위에 오도록 작성
+
+	@include respond(tab-land){ // width < 1200?
+		font-size:56.25%; //1rem = 9px; 9/16 = 56.25%
+	}
+
+	@include respond(tab-port){ // width < 900?
+		font-size:60%; //1rem = 8px; 8/16 = 50%
+	}
+
+	@include respond(big-desktop){
+		font-size:75%; //rem = 12px; 12/16 = 75%
+	}	
+
+}
+
+body {
+	padding:30px;
+	box-sizing:border-box;
+	
+	@include respond(tab-port){
+		padding:0;
+	}
+
+}

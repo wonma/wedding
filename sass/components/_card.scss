@@ -1,0 +1,237 @@
+
+.card{
+
+	//Functionality
+	perspective:150rem;
+	-moz-perspective: 150rem;
+	position:relative;
+	height: 50rem; //자식이 absolute를 먹어서 flow에서 벗어난 상태이므로 
+	//높이값 아예 없고 가로사이즈만 있는 쪼그라든 부모가 됨
+
+	&__side{
+		height: 50rem;
+		transition: all .8s ease;
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		backface-visibility: hidden;
+		border-radius:3px;
+		box-shadow:0 1.5rem 5rem rgba($color-black, .2);
+		overflow:hidden;
+
+		&--front{
+			background-color:$color-white;
+		}
+
+		&--back{
+			transform: rotateY(-180deg);
+
+			&--1{
+				background-image:linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+			}
+
+			&--2{
+				background-image:linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+			}
+
+			&--3{
+				background-image:linear-gradient(to right bottom, $color-primary, $color-primary-light);
+			}
+
+		}
+
+	}
+
+
+	&:hover &__side--front{
+		transform:rotateY(180deg);
+	}
+
+	&:hover &__side--back{
+		transform:rotateY(0);
+	}
+
+
+	// FRONT SIDE STYLING
+	&__picture{
+
+		background-size:cover;
+		background-position:top;
+		background-repeat:no-repeat;
+
+		height:23rem;
+		background-blend-mode:screen;
+		-webkit-clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+
+		&--1{
+			background-image:linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+			url(../img/photo002.jpg);
+		}
+
+		&--2{
+
+			background-image:linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),
+			url(../img/photo003.jpg);
+		}
+
+		&--3{
+			background-image:linear-gradient(to right bottom, $color-primary, $color-primary-light),
+			url(../img/photo004.jpg);
+		}		
+
+	}
+
+	&__heading{
+		font-size:2.8rem;
+		font-weight:400;
+		text-transform:uppercase;
+		text-align:center;
+		color: $color-white;
+		position:absolute;
+		top:25%;
+		left:50%;
+		transform:translate(-50%, -50%);
+		width:70%;
+		line-height:6rem;
+	}
+
+	&__heading-span{
+		-webkit-box-decoration-break:clone;
+		box-decoration-break:clone;
+
+		&--1{
+			padding:.7rem 1.5rem;
+			background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .5), 
+				rgba($color-secondary-dark, .5));
+		}
+
+		&--2{
+			padding:.7rem 1.5rem;
+			background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .5), 
+				rgba($color-tertiary-dark, .5));
+		}
+
+		&--3{
+			padding:.7rem 1.5rem;
+			background-image: linear-gradient(to right bottom, rgba($color-primary, .5), 
+				rgba($color-primary-light, .5));
+		}
+
+
+
+	}
+
+
+	&__details{
+		ul{
+			list-style:none;
+			width:70%;
+			margin:0 auto;
+			font-family:'Lato', sans-serif;
+			li{
+				text-align:center;
+				font-size:1.5rem;
+				margin-top:.5rem;
+				padding:1rem;
+				border-bottom:1px solid $color-grey-light-1;	
+			}
+		}
+
+	}
+
+	// BACK SIDE STYLING
+	
+	&__cta{
+		font-family:'Lato', sans-serif;
+		font-weight:300;
+		color:white;
+		text-align:center;
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%, -50%);
+		width:90%;
+	}
+
+	&__price-box{
+
+	}
+
+	&__price-only{
+
+	}
+
+	&__price-value{
+		font-size:6rem;
+	}
+
+
+ // ------------------tab-port start-------------- 
+
+	@include respond(tab-port){
+		background-color:white;
+		border-radius:3px;
+		box-shadow:0 1.5rem 5rem rgba($color-black, .2);
+		height: 70rem; //자식이 absolute를 먹어서 flow에서 벗어난 상태이므로 
+		//높이값 아예 없고 가로사이즈만 있는 쪼그라든 부모가 됨
+
+		&__side{
+			height: auto;
+			// position:relative;
+			overflow:hidden;
+			border-radius:0;
+			box-shadow:none;
+
+
+			&--front{
+				height:67%;
+				position:relative;
+			}
+
+			&--back{
+				position:relative;
+				height:33%;
+				background-color:green;
+				transform: rotateY(0deg);
+				clip-path:polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+			}
+		}
+
+
+		&:hover &__side--front{
+			transform:rotateY(0deg);
+		}
+
+
+		// BACK SIDE STYLING
+		
+		&__cta{
+
+			position:relative;
+			height:100%;
+			width:100%;
+			padding-top:4rem;
+		}
+
+		&__price-box{
+
+		}
+
+		&__price-only{
+
+		}
+
+		&__price-value{
+			font-size:6rem;
+		}
+
+
+
+	} // tab-port end
+
+
+
+}
